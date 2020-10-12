@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Security Scan Master Branch') {
             when {
-                branch 'master'
+                expression {env.GIT_BRANCH == 'origin/master'}    
             }
             steps {
                 parallel(
