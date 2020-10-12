@@ -17,37 +17,37 @@ pipeline {
                 //sh 'doker pull juliantotzek/verademo1-tomcat'
             }
         }
-//        stage('Security Scan Master Branch') {
-//            when {
-//                branch 'master'
-//            }
-//            steps {
-//                parallel(
-//                    a:{
-//                        // Policy scan
-//                        withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
-//                            veracode applicationName: "Verademo", criticality: 'VeryHigh',
-//                            fileNamePattern: '', replacementPattern: '', scanExcludesPattern: '', scanIncludesPattern: '',
-//                            scanName: 'build $buildnumber - Jenkins',
-//                            uploadExcludesPattern: '', uploadIncludesPattern: 'target/*.war', waitForScan: true,
-//                            vid: VERACODEID, vkey: VERACODEKEY
-//                        }
-//                    },
-//                    b:{
-//                        // 3rd party scan application
-//                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-//                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
-//                        }
-//                    },
-//                    c:{
-//                        // 3rd party scan docker container
-//                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-//                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
-//                        }
-//                    }
-//                )
-//            }
-//        }
+        stage('Security Scan Master Branch') {
+            when {
+                branch 'master'
+            }
+            steps {
+                parallel(
+                    a:{
+                        // Policy scan
+                        withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
+                            veracode applicationName: "Verademo", criticality: 'VeryHigh',
+                            fileNamePattern: '', replacementPattern: '', scanExcludesPattern: '', scanIncludesPattern: '',
+                            scanName: 'build $buildnumber - Jenkins',
+                            uploadExcludesPattern: '', uploadIncludesPattern: 'target/*.war', waitForScan: true,
+                            vid: VERACODEID, vkey: VERACODEKEY
+                        }
+                    },
+                    b:{
+                        // 3rd party scan application
+                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
+                        }
+                    },
+                    c:{
+                        // 3rd party scan docker container
+                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
+                        }
+                    }
+                )
+            }
+        }
 //        stage('Security Scan Feature Branch'){
 //            when {
 //                branch "release"
