@@ -40,7 +40,7 @@ pipeline {
                     b:{
                         // 3rd party scan application
                         withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s -- --debug'
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
                         }
                     },
                //     c:{
