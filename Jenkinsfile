@@ -67,13 +67,13 @@ pipeline {
                     b:{
                         // 3rd party scan application
                         withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh --debug'
                         }
                     },
                     c:{
                         // 3rd party scan docker container
                         withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat --debug'
                         }
                     }
                 )
