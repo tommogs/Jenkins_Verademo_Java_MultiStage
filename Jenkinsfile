@@ -87,7 +87,7 @@ pipeline {
         }
         stage('Security Scan Development Branch'){
             when {
-                branch "development"
+                expression {env.GIT_BRANCH == 'origin/development'}
             }
             steps{
                 parallel(
@@ -99,18 +99,18 @@ pipeline {
                             sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --file target/verademo.war'''
                         }
                     },
-                    b:{
+                   // b:{
                         // 3rd party scan application
-                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
-                        }
-                    },
-                    c:{
+                   //     withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                   //         sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
+                   //     }
+                   // },
+                   // c:{
                         // 3rd party scan docker container
-                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
-                        }
-                    }
+                   //     withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                   //         sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
+                   //     }
+                   // }
                 )
             }
         }
