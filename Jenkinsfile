@@ -96,7 +96,7 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
                             sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
                             sh 'unzip -o pipeline-scan-LATEST.zip pipeline-scan.jar'
-                            sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --fail_on_cwe=978 --file target/verademo.war'''
+                            sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --fail_on_cwe="789" --fail_on_severity= --file target/verademo.war'''
                         }
                     },
                     b:{
