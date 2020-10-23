@@ -102,6 +102,7 @@ pipeline {
                     b:{
                          //3rd party scan application
                         withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                            sh 'export SRCCLR_SCM_URI=my test url' && 'export SRCCLR_SCM_REF=mybranch' && 'export SRCCLR_SCM_REF_TYPE=branch' && 'export SRCCLR_SCM_REV=commitid'
                             sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
                         }
                     },
