@@ -103,6 +103,11 @@ pipeline {
                         // 3rd party scan application
                    //     withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
                    //         sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
+                   //         sh 'export SRCCLR_SCM_NAME=$JOB_NAME'
+                   //         sh 'export SRCCLR_SCM_URI=$GIT_URL'
+                   //         sh 'export SRCCLR_SCM_REF=$GIT_BRANCH'
+                   //         sh 'export SRCCLR_SCM_REF_TYPE=branch'
+                   //         sh 'export SRCCLR_SCM_REV=$GIT_COMMIT'
                    //     }
                    // },
                    // c:{
