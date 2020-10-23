@@ -96,19 +96,19 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
                             sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
                             sh 'unzip -o pipeline-scan-LATEST.zip pipeline-scan.jar'
-                            sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --file target/verademo.war'''
+                            sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --fail_on_cwe="789" --fail_on_severity= --file target/verademo.war'''
                         }
                     },
-                   // b:{
-                        // 3rd party scan application
-                   //     withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                   //         sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
-                   //     }
-                   // },
+                    b:{
+                         3rd party scan application
+                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
+                        }
+                    },
                    // c:{
-                        // 3rd party scan docker container
+                   //      3rd party scan docker container
                    //     withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                   //         sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
+                   //        sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
                    //     }
                    // }
                 )
