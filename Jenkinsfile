@@ -10,7 +10,6 @@ pipeline {
     }
     environment {
         JAVA_OPTS="-Duser.home=${WORKSPACE}"
-        SRCCLR_SCM_URI="my test url"
         SRCCLR_SCM_REF="mybranch"
         SRCCLR_SCM_REF_TYPE="branch"
         SRCCLR_SCM_REV="commitid"
