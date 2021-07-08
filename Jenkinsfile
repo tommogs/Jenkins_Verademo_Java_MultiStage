@@ -90,7 +90,7 @@ pipeline {
         }
         stage('Security Scan Development Branch'){
             when {
-                expression {env.GIT_BRANCH == 'origin/development'}
+                expression {env.BRANCH_NAME != 'development'}
             }
             steps{
                 parallel(
