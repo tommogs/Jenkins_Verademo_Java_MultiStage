@@ -18,7 +18,7 @@ pipeline {
                 // Compile Java app
                 sh 'mvn clean package'
                 // pull docker container
-                //sh 'doker pull juliantotzek/verademo1-tomcat'
+                sh 'doker pull juliantotzek/verademo1-tomcat'
             }
         }
         stage('Security Scan Master Branch') {
