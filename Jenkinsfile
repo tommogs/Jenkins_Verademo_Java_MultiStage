@@ -108,12 +108,12 @@ pipeline {
                             sh 'export SRCCLR_SCM_REV=$GIT_COMMIT'
                         }
                     },
-                   // c:{
-                        // 3rd party scan docker container
-                   //     withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
-                   //         sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
-                   //     }
-                   // }
+                    c:{
+                         3rd party scan docker container
+                        withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
+                            sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan --image juliantotzek/verademo1-tomcat'
+                        }
+                    }
                 )
             }
         }
