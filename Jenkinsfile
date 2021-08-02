@@ -27,17 +27,17 @@ pipeline {
             }
             steps {
                 parallel(
-                    a:{
+                    //a:{
                         // Policy scan
-                        withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
-                            veracode applicationName: "Jenkins_Verademo_Java_MultiStage", canFailJob: true, timeout: 60, criticality: 'VeryHigh',
-                            fileNamePattern: '', replacementPattern: '', scanExcludesPattern: '', scanIncludesPattern: '',
-                            scanName: 'build $buildnumber - Jenkins',
-                            uploadExcludesPattern: '', uploadIncludesPattern: 'target/*.war', waitForScan: true,
-                            vid: VERACODEID, vkey: VERACODEKEY
+                        //withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
+                            //veracode applicationName: "Jenkins_Verademo_Java_MultiStage", canFailJob: true, timeout: 60, criticality: 'VeryHigh',
+                            //fileNamePattern: '', replacementPattern: '', scanExcludesPattern: '', scanIncludesPattern: '',
+                            //scanName: 'build $buildnumber - Jenkins',
+                            //uploadExcludesPattern: '', uploadIncludesPattern: 'target/*.war', waitForScan: true,
+                            //vid: VERACODEID, vkey: VERACODEKEY
                
-                        }
-                    },
+                        //}
+                    //},
                     b:{
                         // 3rd party scan application
                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
