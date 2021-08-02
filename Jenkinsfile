@@ -91,23 +91,23 @@ pipeline {
             }
             steps{
                 parallel(
-                    a:{
+                    //a:{
                         //Pipeline scan
-                        withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
-                            sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
-                            sh 'unzip -o pipeline-scan-LATEST.zip pipeline-scan.jar'
-                            sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --fail_on_cwe="789" --file target/verademo.war'''
+                        //withCredentials([usernamePassword(credentialsId: 'VeracodeAPI', passwordVariable: 'VERACODEKEY', usernameVariable: 'VERACODEID')]) {
+                            //sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
+                            //sh 'unzip -o pipeline-scan-LATEST.zip pipeline-scan.jar'
+                            //sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --fail_on_cwe="789" --file target/verademo.war'''
                         }
                     },
                     b:{
                         // 3rd party scan application
                         withCredentials([string(credentialsId: 'SRCCLR_API_TOKEN', variable: 'SRCCLR_API_TOKEN')]) {
                             sh 'curl -sSL https://download.sourceclear.com/ci.sh | sh'
-                            sh 'export SRCCLR_SCM_NAME=$JOB_NAME'
-                            sh 'export SRCCLR_SCM_URI=$GIT_URL'
-                            sh 'export SRCCLR_SCM_REF=$GIT_BRANCH'
-                            sh 'export SRCCLR_SCM_REF_TYPE=branch'
-                            sh 'export SRCCLR_SCM_REV=$GIT_COMMIT'
+                            //sh 'export SRCCLR_SCM_NAME=$JOB_NAME'
+                            //sh 'export SRCCLR_SCM_URI=$GIT_URL'
+                            //sh 'export SRCCLR_SCM_REF=$GIT_BRANCH'
+                            //sh 'export SRCCLR_SCM_REF_TYPE=branch'
+                            //sh 'export SRCCLR_SCM_REV=$GIT_COMMIT'
                         }
                     },
                     c:{
