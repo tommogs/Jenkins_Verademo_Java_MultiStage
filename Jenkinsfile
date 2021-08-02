@@ -97,7 +97,7 @@ pipeline {
                             //sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
                             //sh 'unzip -o pipeline-scan-LATEST.zip pipeline-scan.jar'
                             //sh '''java -jar pipeline-scan.jar -vid "$VERACODEID" -vkey "$VERACODEKEY" --fail_on_cwe="789" --file target/verademo.war'''
-                        }
+                        //}
                     },
                     b:{
                         // 3rd party scan application
